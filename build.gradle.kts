@@ -3,9 +3,9 @@ plugins {
     kotlin("jvm") version "1.7.20" apply false
 }
 
-ext["grpc_version"] = "1.49.1"
+ext["grpc_version"] = "1.49.2"
 ext["grpc_kotlin_version"] = "1.3.0"
-ext["protobuf_version"] = "3.20.3"
+ext["protobuf_version"] = "3.21.7"
 
 allprojects {
     repositories {
