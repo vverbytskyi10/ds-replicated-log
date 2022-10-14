@@ -1,6 +1,6 @@
 package com.decert.replicationlog.master.repository
 
-import com.decert.replicationlog.master.models.Message
+import com.decert.replicationlog.model.message.Message
 
 interface MessageRepository {
 

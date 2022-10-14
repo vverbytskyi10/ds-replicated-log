@@ -8,9 +8,7 @@ import com.decert.replicationlog.master.repository.MessageRepositoryImpl
 import io.ktor.server.application.*
 import io.ktor.server.netty.*
 
-fun main(args: Array<String>) {
-    EngineMain.main(args)
-}
+fun main(args: Array<String>) = EngineMain.main(args)
 
 @Suppress("unused")
 fun Application.module() {

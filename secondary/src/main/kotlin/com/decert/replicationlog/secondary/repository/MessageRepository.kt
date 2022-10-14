@@ -1,6 +1,6 @@
-package com.decert.secondary.repository
+package com.decert.replicationlog.secondary.repository
 
-import com.decert.secondary.models.Message
+import com.decert.replicationlog.model.message.Message
 
 interface MessageRepository {
 

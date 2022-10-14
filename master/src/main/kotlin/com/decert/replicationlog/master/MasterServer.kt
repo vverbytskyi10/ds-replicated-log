@@ -1,12 +1,12 @@
 package com.decert.replicationlog.master
 
 import com.decert.replicationlog.master.config.ServerConfig
-import com.decert.replicationlog.master.models.Message
 import com.decert.replicationlog.master.secondary.ServiceAddress
 import com.decert.replicationlog.master.secondary.SecondaryService
 import com.decert.replicationlog.master.secondary.impl.SecondaryServiceImpl
 import com.decert.replicationlog.master.repository.MessageRepository
 import com.decert.replicationlog.master.secondary.ServiceParams
+import com.decert.replicationlog.model.message.Message
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope

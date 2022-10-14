@@ -1,6 +1,6 @@
 rootProject.name = "replicated-log"
 
-include("protos", "stub", "master", "secondary")
+include("shared", "protos", "stub", "master", "secondary")
 
 pluginManagement {
     repositories {
@@ -9,4 +9,3 @@ pluginManagement {
         google()
     }
 }
-include()

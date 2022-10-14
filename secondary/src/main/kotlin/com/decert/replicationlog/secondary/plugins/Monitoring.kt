@@ -1,4 +1,4 @@
-package com.decert.secondary.plugins
+package com.decert.replicationlog.secondary.plugins
 
 import io.ktor.server.application.*
 import io.ktor.server.plugins.callloging.*

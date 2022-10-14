@@ -1,15 +1,9 @@
-package com.decert.replicationlog.master.models
+package com.decert.replicationlog.master.mappers
 
-import com.decert.replicationlog.service.ReplicationServiceGrpc.Message as GrpcMessage
-import com.decert.replicationlog.service.ReplicationServiceGrpc.Severity as GrpcSeverity
-import kotlinx.serialization.Serializable
-
-enum class Severity {
-    VERBOSE, DEBUG, INFO, WARNING, ERROR
-}
-
-@Serializable
-data class Message(val severity: Severity, val tag: String, val message: String)
+import com.decert.replicationlog.model.message.Message
+import com.decert.replicationlog.model.message.Severity
+import com.decert.replicationlog.service.MessageServiceGrpc.GrpcMessage
+import com.decert.replicationlog.service.MessageServiceGrpc.GrpcSeverity
 
 fun Message.toGrpcMessage(): GrpcMessage {
     return GrpcMessage.newBuilder()

@@ -1,8 +1,8 @@
 package com.decert.replicationlog.master.secondary.impl
 
-import com.decert.replicationlog.master.models.Message
 import com.decert.replicationlog.master.secondary.SecondaryService
 import com.decert.replicationlog.master.secondary.ServiceParams
+import com.decert.replicationlog.model.message.Message
 import com.decert.replicationlog.service.MessageService
 import io.grpc.ManagedChannel
 import io.grpc.ManagedChannelBuilder

@@ -1,22 +1,21 @@
 package com.decert.replicationlog.service
 
-import com.decert.replicationlog.master.models.Message
-import com.decert.replicationlog.master.models.toGrpcMessage
-import com.decert.replicationlog.service.ReplicationGrpcKt.ReplicationCoroutineStub
+import com.decert.replicationlog.master.mappers.toGrpcMessage
+import com.decert.replicationlog.model.message.Message
 import io.grpc.ManagedChannel
 
 class MessageService(channel: ManagedChannel) {
 
-    private val stub = ReplicationCoroutineStub(channel)
+    private val stub = MessageGrpcKt.MessageCoroutineStub(channel)
 
     suspend fun replicate(id: Int, message: Message) {
         val rpcMessage = message.toGrpcMessage()
 
-        val replicateRequest = ReplicationServiceGrpc.MessageRequest.newBuilder()
+        val replicateRequest = MessageServiceGrpc.ReplicateMessageRequest.newBuilder()
             .setId(id)
             .setMessage(rpcMessage)
             .build()
 
-        stub.replicateMessage(replicateRequest)
+        stub.replicate(replicateRequest)
     }
 }

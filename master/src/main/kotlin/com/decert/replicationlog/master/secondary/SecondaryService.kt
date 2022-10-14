@@ -1,6 +1,6 @@
 package com.decert.replicationlog.master.secondary
 
-import com.decert.replicationlog.master.models.Message
+import com.decert.replicationlog.model.message.Message
 
 interface SecondaryService {
 

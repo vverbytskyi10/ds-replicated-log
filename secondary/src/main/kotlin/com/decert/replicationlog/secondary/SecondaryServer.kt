@@ -1,9 +1,8 @@
-package com.decert.secondary
+package com.decert.replicationlog.secondary
 
 import com.decert.replicationlog.secondary.config.ServerConfig
-import com.decert.replicationlog.service.MService
-import com.decert.replicationlog.service.MServiceParams
-import com.decert.secondary.repository.MessageRepository
+import com.decert.replicationlog.service.MessageService
+import com.decert.replicationlog.secondary.repository.MessageRepository
 import io.grpc.ServerBuilder
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -18,7 +17,7 @@ class SecondaryServer(config: ServerConfig, private val repository: MessageRepos
 
     private val server = ServerBuilder
         .forPort(config.grpcConfig.port)
-        .addService(MService(MServiceParams(config.grpcConfig.delay), repository))
+        .addService(MessageService(MessageService.Params(config.grpcConfig.delay), repository))
         .build()
 
     fun startGrcpServer() {

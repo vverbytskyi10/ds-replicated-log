@@ -1,13 +1,13 @@
-package com.decert.secondary.plugins
+package com.decert.replicationlog.secondary.plugins
 
 import com.decert.replicationlog.secondary.config.GrpcConfig
 import com.decert.replicationlog.secondary.config.ServerConfig
 import io.ktor.server.application.*
 
-private const val OBJECT_GRPC_CONFIG = "grpc_config"
+private const val OBJECT_GRPC_CONFIG = "ktor.grpc_config"
 
-private const val PATH_PORT = "port"
-private const val PATH_CALL_DELAY = "call_delay"
+private const val PATH_PORT = "grpc_port"
+private const val PATH_CALL_DELAY = "grpc_call_delay"
 
 fun Application.setupConfig(config: ServerConfig) {
     val grpcObject = environment.config.config(OBJECT_GRPC_CONFIG)

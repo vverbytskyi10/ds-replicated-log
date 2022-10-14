@@ -1,6 +1,6 @@
-package com.decert.secondary.plugins
+package com.decert.replicationlog.secondary.plugins
 
-import com.decert.secondary.SecondaryServer
+import com.decert.replicationlog.secondary.SecondaryServer
 import io.ktor.server.application.*
 import io.ktor.server.routing.*
 

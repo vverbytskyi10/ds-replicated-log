@@ -20,6 +20,7 @@ application {
 
 dependencies {
     implementation(project(":stub"))
+    implementation(project(":shared"))
 
     implementation("io.ktor:ktor-server-core-jvm:$ktor_version")
     implementation("io.ktor:ktor-server-content-negotiation-jvm:$ktor_version")

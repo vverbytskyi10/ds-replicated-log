@@ -6,7 +6,6 @@ class ServerConfig {
 
     companion object {
 
-        val WRITE_TIMEOUT = 2000L
-        val ACKNOWLEDGEMENT_TIMEOUT = 2000L
+        const val WRITE_TIMEOUT = 2000L
     }
 }
