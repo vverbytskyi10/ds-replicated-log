@@ -4,7 +4,7 @@ import com.decert.replicationlog.secondary.mappers.toMessage
 import com.decert.replicationlog.service.MessageServiceGrpc.ReplicateMessageRequest
 import com.decert.replicationlog.service.MessageServiceGrpc.ReplicateMessageResponse
 import com.decert.replicationlog.secondary.repository.MessageRepository
-import kotlinx.coroutines.withTimeout
+import kotlinx.coroutines.delay
 
 class MessageService(
     private val params: Params,
@@ -12,14 +12,14 @@ class MessageService(
 ) : MessageGrpcKt.MessageCoroutineImplBase() {
 
     override suspend fun replicate(request: ReplicateMessageRequest): ReplicateMessageResponse {
-        return withTimeout(params.delay) {
-            val id = request.id
-            val message = request.message.toMessage()
+        delay(params.delay)
 
-            messageRepository.addMessage(id, message)
+        val id = request.id
+        val message = request.message.toMessage()
 
-            ReplicateMessageResponse.newBuilder().setId(id).build()
-        }
+        messageRepository.addMessage(id, message)
+
+        return ReplicateMessageResponse.newBuilder().setId(id).build()
     }
 
     data class Params(val delay: Long)

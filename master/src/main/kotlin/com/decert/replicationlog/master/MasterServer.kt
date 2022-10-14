@@ -24,7 +24,7 @@ class MasterServer(
             SecondaryServiceImpl(
                 ServiceParams(
                     ServiceAddress(serverConfig.secondaryConfig.host, port),
-                    ServerConfig.WRITE_TIMEOUT
+                    ServerConfig.SECONDARY_TIMEOUT
                 ),
             )
         }

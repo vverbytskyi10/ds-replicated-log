@@ -31,7 +31,8 @@ class SecondaryServiceImpl(private val serviceParams: ServiceParams) : Secondary
     override suspend fun disconnect() {
         assertConnected()
 
-        channel?.awaitTermination(1, TimeUnit.SECONDS)
+        channel?.shutdown()
+        channel?.awaitTermination(3000, TimeUnit.SECONDS)
 
         channel = null
         messageService = null

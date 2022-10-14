@@ -21,7 +21,7 @@ dependencies {
 
     implementation("io.ktor:ktor-server-core-jvm:${Versions.ktor}")
     implementation("io.ktor:ktor-server-netty-jvm:${Versions.ktor}")
-    implementation("ch.qos.logback:logback-classic:${Versions.logback}")
+    implementation("io.ktor:ktor-server-call-logging-jvm:${Versions.ktor}")
     implementation("io.ktor:ktor-server-content-negotiation-jvm:${Versions.ktor}")
     implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:${Versions.ktor}")
     implementation("ch.qos.logback:logback-classic:${Versions.logback}")

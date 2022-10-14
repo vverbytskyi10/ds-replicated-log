@@ -5,7 +5,6 @@ class ServerConfig {
     lateinit var secondaryConfig: SecondaryConfig
 
     companion object {
-
-        const val WRITE_TIMEOUT = 2000L
+        const val SECONDARY_TIMEOUT = 2000L
     }
 }
