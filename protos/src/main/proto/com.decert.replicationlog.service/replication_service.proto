@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 option java_package = "com.decert.replicationlog.service";
-option java_outer_classname = "ReplicationService";
+option java_outer_classname = "ReplicationServiceGrpc";
 
 package replicationservice;
 
@@ -11,13 +11,17 @@ service Replication {
 
 message MessageRequest {
   uint32 id = 1;
-  Severity severity = 2;
-  string tag = 3;
-  string message = 4;
+  Message message = 2;
 }
 
 message MessageResponse {
   uint32 id = 1;
+}
+
+message Message {
+  Severity severity = 1;
+  string tag = 2;
+  string message = 3;
 }
 
 enum Severity {

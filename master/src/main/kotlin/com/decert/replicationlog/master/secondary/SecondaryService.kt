@@ -2,7 +2,7 @@ package com.decert.replicationlog.master.secondary
 
 import com.decert.replicationlog.master.models.Message
 
-interface Secondary {
+interface SecondaryService {
 
     suspend fun connect()
 
@@ -10,5 +10,5 @@ interface Secondary {
 
     suspend fun isConnected(): Boolean
 
-    suspend fun sendMessage(message: Message)
+    suspend fun replicate(id: Int, message: Message)
 }

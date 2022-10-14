@@ -1,15 +1,15 @@
-package com.decert.replicationlog.master.storage
+package com.decert.replicationlog.master.repository
 
 import com.decert.replicationlog.master.models.Message
 
-interface MessageStorage {
+interface MessageRepository {
 
     fun getMessages(): List<Message>
 
-    fun addMessage(message: Message)
+    fun addMessage(id: Int, message: Message)
 }
 
-class InMemoryMessageStorage : MessageStorage {
+class MessageRepositoryImpl : MessageRepository {
 
     private val messages = mutableListOf<Message>()
 
@@ -17,7 +17,7 @@ class InMemoryMessageStorage : MessageStorage {
         return messages
     }
 
-    override fun addMessage(message: Message) {
+    override fun addMessage(id: Int, message: Message) {
         messages.add(message)
     }
 }
