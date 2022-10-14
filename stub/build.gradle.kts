@@ -9,11 +9,12 @@ dependencies {
     protobuf(project(":protos"))
 
     api(kotlin("stdlib"))
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
-    api("io.grpc:grpc-protobuf:${rootProject.ext["grpc_version"]}")
-    api("com.google.protobuf:protobuf-java-util:${rootProject.ext["protobuf_version"]}")
-    api("io.grpc:grpc-kotlin-stub:${rootProject.ext["grpc_kotlin_version"]}")
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}")
+
+    api("io.grpc:grpc-protobuf:${Versions.grpc}")
+    api("com.google.protobuf:protobuf-java-util:${Versions.protobuf}")
+    api("io.grpc:grpc-kotlin-stub:${Versions.grpcKotlin}")
 }
 
 java {
@@ -29,14 +30,14 @@ sourceSets {
 
 protobuf {
     protoc {
-        artifact = "com.google.protobuf:protoc:${rootProject.ext["protobuf_version"]}"
+        artifact = "com.google.protobuf:protoc:${Versions.protobuf}"
     }
     plugins {
         id("grpc") {
-            artifact = "io.grpc:protoc-gen-grpc-java:${rootProject.ext["grpc_version"]}"
+            artifact = "io.grpc:protoc-gen-grpc-java:${Versions.grpc}"
         }
         id("grpckt") {
-            artifact = "io.grpc:protoc-gen-grpc-kotlin:${rootProject.ext["grpc_kotlin_version"]}:jdk8@jar"
+            artifact = "io.grpc:protoc-gen-grpc-kotlin:${Versions.grpcKotlin}:jdk8@jar"
         }
     }
     generateProtoTasks {
