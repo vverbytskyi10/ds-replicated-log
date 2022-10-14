@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option java_package = "com.decert.replicationlog.service";
+option java_outer_classname = "MessageServiceGrpc";
+
+package replicationservice;
+
+service Message {
+  rpc replicate (ReplicateMessageRequest) returns (ReplicateMessageResponse) {}
+}
+
+message ReplicateMessageRequest {
+  uint32 id = 1;
+  GrpcMessage message = 2;
+}
+
+message ReplicateMessageResponse {
+  uint32 id = 1;
+}
+
+message GrpcMessage {
+  GrpcSeverity severity = 1;
+  string tag = 2;
+  string message = 3;
+}
+
+enum GrpcSeverity {
+  VERBOSE = 0;
+  DEBUG = 1;
+  INFO = 2;
+  WARNING = 3;
+  ERROR = 4;
+}
