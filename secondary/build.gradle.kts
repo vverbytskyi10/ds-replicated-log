@@ -9,10 +9,16 @@ group = "com.decert"
 version = "0.0.1"
 
 application {
-    mainClass.set("com.decert.master.ApplicationKt")
+    mainClass.set("com.decert.replicationlog.secondary.ApplicationKt")
 
     val isDevelopment: Boolean = project.ext.has("development")
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
+}
+
+ktor {
+    fatJar {
+        archiveFileName.set("secondary.jar")
+    }
 }
 
 dependencies {

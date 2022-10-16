@@ -1,0 +1,17 @@
+services:
+  master:
+    build:
+      context: .
+      target: run-master
+    ports:
+      - "8085:8085"
+    expose:
+      - "9008"
+  secondary:
+    build:
+      context: .
+      target: run-secondary
+    ports:
+      - "8086:8086"
+    expose:
+      - "9008"

@@ -23,6 +23,7 @@ class SecondaryServer(config: ServerConfig, private val repository: MessageRepos
     fun startGrcpServer() {
         listeningScope.launch {
             server.start()
+            println("gRPC servers is started on: $server")
             server.awaitTermination()
         }
     }

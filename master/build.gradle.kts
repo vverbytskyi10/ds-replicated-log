@@ -15,6 +15,12 @@ application {
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
 }
 
+ktor {
+    fatJar {
+        archiveFileName.set("master.jar")
+    }
+}
+
 dependencies {
     implementation(project(":stub"))
     implementation(project(":shared"))
