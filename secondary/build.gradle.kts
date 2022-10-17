@@ -1,18 +1,27 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     application
     kotlin("jvm")
     kotlin("plugin.serialization") version "1.7.20"
     id("io.ktor.plugin") version "2.1.2"
+    id("com.github.johnrengelman.shadow") version "7.0.0"
 }
 
 group = "com.decert"
 version = "0.0.1"
 
 application {
-    mainClass.set("com.decert.master.ApplicationKt")
+    mainClass.set("com.decert.replicationlog.secondary.ApplicationKt")
 
     val isDevelopment: Boolean = project.ext.has("development")
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
+}
+
+ktor {
+    fatJar {
+        archiveFileName.set("secondary.jar")
+    }
 }
 
 dependencies {
@@ -27,4 +36,8 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:${Versions.logback}")
 
     runtimeOnly("io.grpc:grpc-netty:${Versions.grpc}")
+}
+
+tasks.named("shadowJar", ShadowJar::class) {
+    mergeServiceFiles()
 }

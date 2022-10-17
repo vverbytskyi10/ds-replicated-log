@@ -17,8 +17,7 @@ fun Application.module() {
 
     setupConfig(config)
 
-    log.debug("Secondary Host: ${config.secondaryConfig.host}")
-    log.debug("Secondary Ports: ${config.secondaryConfig.ports}")
+    log.debug("Secondaries: ${config.secondaryConfig.addresses}")
 
     val masterServer = MasterServer(config, storage)
 
