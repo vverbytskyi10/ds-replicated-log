@@ -1,6 +1,5 @@
 package com.decert.replicationlog.master.config
 
-data class SecondaryConfig(
-    val host: String,
-    val ports: Set<Int>
-)
+data class Address(val host: String, val port: Int)
+
+data class SecondaryConfig(val addresses: List<Address>)

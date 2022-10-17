@@ -14,18 +14,15 @@ import java.lang.Exception
 import java.util.concurrent.atomic.AtomicInteger
 
 class MasterServer(
-    private val serverConfig: ServerConfig,
+    serverConfig: ServerConfig,
     private val messageRepository: MessageRepository
 ) {
 
     private val messageId = AtomicInteger()
-    private val secondaryServices: List<SecondaryService> = serverConfig.secondaryConfig.ports
-        .map { port ->
+    private val secondaryServices: List<SecondaryService> = serverConfig.secondaryConfig.addresses
+        .map { address ->
             SecondaryServiceImpl(
-                ServiceParams(
-                    ServiceAddress(serverConfig.secondaryConfig.host, port),
-                    ServerConfig.SECONDARY_TIMEOUT
-                ),
+                ServiceParams(ServiceAddress(address.host, address.port), ServerConfig.SECONDARY_TIMEOUT),
             )
         }
 
