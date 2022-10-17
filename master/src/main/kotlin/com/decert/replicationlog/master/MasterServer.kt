@@ -1,16 +1,19 @@
 package com.decert.replicationlog.master
 
 import com.decert.replicationlog.master.config.ServerConfig
-import com.decert.replicationlog.master.secondary.ServiceAddress
-import com.decert.replicationlog.master.secondary.SecondaryService
-import com.decert.replicationlog.master.secondary.impl.SecondaryServiceImpl
 import com.decert.replicationlog.master.repository.MessageRepository
+import com.decert.replicationlog.master.secondary.SecondaryService
+import com.decert.replicationlog.master.secondary.ServiceAddress
 import com.decert.replicationlog.master.secondary.ServiceParams
+import com.decert.replicationlog.master.secondary.impl.SecondaryServiceImpl
 import com.decert.replicationlog.model.message.Message
+import io.ktor.http.*
+import io.ktor.server.application.*
+import io.ktor.server.request.*
+import io.ktor.server.response.*
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
-import java.lang.Exception
 import java.util.concurrent.atomic.AtomicInteger
 
 class MasterServer(
@@ -26,11 +29,23 @@ class MasterServer(
             )
         }
 
-    fun getMessages(): List<Message> {
-        return messageRepository.getMessages()
+    suspend fun handlePostMessageCall(call: ApplicationCall) {
+        try {
+            handlePostMessage(call.receive())
+            call.respond(HttpStatusCode.OK, mapOf("status" to "success"))
+        } catch (e: Exception) {
+            call.respond(
+                HttpStatusCode.NotAcceptable,
+                mapOf("status" to "failure", "reason" to "Invalid message format")
+            )
+        }
     }
 
-    suspend fun saveMessage(message: Message): Int {
+    suspend fun handleGetMessagesCall(call: ApplicationCall) {
+        call.respond(HttpStatusCode.OK, mapOf("messages" to messageRepository.getMessages()))
+    }
+
+    private suspend fun handlePostMessage(message: Message): Int {
         ensureConnectedToSecondaries()
 
         val id = messageId.incrementAndGet()
