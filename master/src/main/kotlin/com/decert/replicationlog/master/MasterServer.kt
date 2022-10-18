@@ -11,6 +11,7 @@ import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
+import io.ktor.util.logging.*
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
@@ -18,14 +19,20 @@ import java.util.concurrent.atomic.AtomicInteger
 
 class MasterServer(
     serverConfig: ServerConfig,
+    private val logger: Logger,
     private val messageRepository: MessageRepository
 ) {
 
     private val messageId = AtomicInteger()
     private val secondaryServices: List<SecondaryService> = serverConfig.secondaryConfig.addresses
         .map { address ->
+            logger.debug("Replication Instance: ${address.host}:${address.port}")
+
             SecondaryServiceImpl(
-                ServiceParams(ServiceAddress(address.host, address.port), ServerConfig.SECONDARY_TIMEOUT),
+                ServiceParams(
+                    ServiceAddress(address.host, address.port),
+                    ServerConfig.SECONDARY_TIMEOUT
+                )
             )
         }
 

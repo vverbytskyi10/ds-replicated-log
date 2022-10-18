@@ -17,9 +17,7 @@ fun Application.module() {
 
     setupConfig(config)
 
-    log.debug("Secondaries: ${config.secondaryConfig.addresses}")
-
-    val masterServer = MasterServer(config, storage)
+    val masterServer = MasterServer(config, log, storage)
 
     configureSerialization()
     configureRouting(masterServer)
